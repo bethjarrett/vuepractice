@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Winning Score - J1 2019</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<h1>Winning Score</h1>
+		<h2>J1 - 2019</h2>
+		<div id="app">
+			<div>
+				<label>&#127822; 3 X</label><input v-model="applethreept">
+			</div>
+			<div>
+				<label>&#127822; 2 X</label><input v-model="appletwopt">
+			</div>
+			<div>
+				<label>&#127822; 1 X</label><input v-model="appleonept">
+			</div>
+        	<div>
+				<label>&#127820; 3 X</label><input v-model="bananathreept">
+			</div>
+			<div>
+				<label>&#127820; 2 X</label><input v-model="bananatwopt">
+			</div>
+			<div>
+				<label>&#127820; 1 X</label><input v-model="bananaonept">
+			</div>
+			<h2 v-if="teamwin === 'Tie'">It's a {{whoWon}}!</h2>
+			<h2 v-else>&#127942;Congrats, {{whoWon}}!&#127881;</h2>
+		</div>
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data:{
+            teamwin:'',
+			applethreept:0,
+			appletwopt:0,
+			appleonept:0,
+            bananathreept:0,
+            bananatwopt:0,
+            bananaonept:0,
+			threept:3,
+			twopt:2,
+			onept:1
+		},
+		computed:{
+			whoWon:function(){
+                let appletotal = (this.appleonept * this.onept) + (this.appletwopt * this.twopt) + (this.applethreept * this.threept);	
+                let bananatotal = (this.bananaonept * this.onept) + (this.bananatwopt * this.twopt) + (this.bananathreept * this.threept);	
+                if (appletotal > bananatotal) {
+                    this.teamwin = "The Apples";
+                } else if (appletotal < bananatotal) {
+                    this.teamwin = "The Bananas";
+                } else {
+                    this.teamwin = "Tie";
+                }
+				return this.teamwin;
+			}
+		}
+	});
+	</script>
+	</body>
+</html>
